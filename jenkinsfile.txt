@@ -1,0 +1,45 @@
+node
+{
+    stage('Commit')
+    {
+        echo "This is Code Download from GIT Project Repository.................."
+    }
+    stage('Build')
+    {
+        echo "This is Build project using maven.................."
+    }
+    stage('Test')
+    {
+        echo "This is Test project Implementation using Selenium................."
+    }
+    stage('Release')
+    {
+        echo "This is Delivery using Dcoker......................................"
+    }
+    stage('Monitor')
+    {
+        echo "This is Application Logs Monitorinig using tool Splunk............."
+    }
+}
+
+
+Terraform 
+
+module "ec2_instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 3.0"
+
+  name = "single-instance"
+
+  ami                    = "ami-ebd02392"
+  instance_type          = "t2.micro"
+  key_name               = "user1"
+  monitoring             = true
+  vpc_security_group_ids = ["sg-12345678"]
+  subnet_id              = "subnet-eddcdzz4"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
